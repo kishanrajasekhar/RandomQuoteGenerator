@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Quote Generator</title>
+	<!--JQuery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+		// Random Quote Generator
+		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
+		
+		$(document).ready(function() {	  
+		  $("#quote").click(function() {
+			  $.getJSON(url, function(json){
+			  		console.log(json);
+			  });
+			});		
+		});
+				
+	</script>	
+	
+	<div class="message">
+      The message will go here
+    </div>
+	<button id="quote">
+        Get Message
+    </button>
+</body>
+</html>
