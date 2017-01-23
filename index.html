@@ -11,19 +11,26 @@
 		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
 		
 		$(document).ready(function() {	  
-		  $("#quote").click(function() {
+		  $("#quoteButton").click(function() {
 			  $.getJSON(url, function(json){
 			  		console.log(json);
+			  		var html = "";
+			  		html += '<p>"';
+			  		html += json.quoteText;
+			  		html += '"</p><strong>-';
+			  		html += json.quoteAuthor;
+			  		html += '</strong>';
+			  		$("#quoteAPI").html(html);
 			  });
 			});		
 		});
 				
 	</script>	
 	
-	<div class="message">
-      The message will go here
+	<div id="quoteAPI">
+      The quote will go here
     </div>
-	<button id="quote">
+	<button id="quoteButton">
         Get Message
     </button>
 </body>
