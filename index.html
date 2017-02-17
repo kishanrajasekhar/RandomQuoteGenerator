@@ -11,33 +11,49 @@
 	<script>
 		// Random Quote Generator
 		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
-		
-		
+				
 		$(document).ready(function() {	  
-		  $("#quoteButton").click(function() {
+		  $("#quote_button").click(function() {
 			  $.getJSON(url, function(json){
 			  		console.log(json);
 			  		var html = "";
-			  		html += '<h2>"';
+			  		html += '<h2 id="quote_text">"';
 			  		html += json.quoteText;
-			  		html += '"</h2><strong>-';
+			  		html += '"</h2><strong><h4>-';
 			  		html += json.quoteAuthor;
-			  		html += '</strong>';
-			  		$("#quoteAPI").html(html);
+			  		html += '</h4></strong>';
+			  		$("#quote_API").html(html);
 			  });
 			});		
-		});
-				
+		});			
 	</script>	
 	
+	<style>
+		body{
+			margin-top: 5%;
+		}
+		
+		#quote_text{
+			font-family: "Brush Script", "Times New Roman", Times, serif;
+		}
+		
+		#quote_section{
+			border: 2px solid black ;
+			margin-right: 10%;
+			margin-left: 10%;
+		}
+	</style>
+	
 	<div class="container-fluid">
-		<div class="text-center">
-			<div id="quoteAPI">
-		      <h2>Click the button to get a quote</h2>
+		<div id="quote_section" class="text-center">
+			<div style="margin-top:5%;margin-bottom:5%">
+				<div id="quote_API">
+			      <h2>Click the button to get a quote</h2>
+			    </div>
+				<button id="quote_button" class="btn btn-primary"> 
+			        New Quote
+			    </button>
 		    </div>
-			<button id="quoteButton" class="btn btn-primary"> 
-		        New Quote
-		    </button>
 	    </div>
     </div>
 </body>
