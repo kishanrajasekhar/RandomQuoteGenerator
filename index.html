@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Random Quote Generator</title>
+	<!--Bootstrap-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!--JQuery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
@@ -10,14 +12,15 @@
 		// Random Quote Generator
 		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
 		
+		
 		$(document).ready(function() {	  
 		  $("#quoteButton").click(function() {
 			  $.getJSON(url, function(json){
 			  		console.log(json);
 			  		var html = "";
-			  		html += '<p>"';
+			  		html += '<h2>"';
 			  		html += json.quoteText;
-			  		html += '"</p><strong>-';
+			  		html += '"</h2><strong>-';
 			  		html += json.quoteAuthor;
 			  		html += '</strong>';
 			  		$("#quoteAPI").html(html);
@@ -27,11 +30,15 @@
 				
 	</script>	
 	
-	<div id="quoteAPI">
-      The quote will go here
+	<div class="container-fluid">
+		<div class="text-center">
+			<div id="quoteAPI">
+		      <h2>Click the button to get a quote</h2>
+		    </div>
+			<button id="quoteButton" class="btn btn-primary"> 
+		        New Quote
+		    </button>
+	    </div>
     </div>
-	<button id="quoteButton">
-        Get Message
-    </button>
 </body>
 </html>
