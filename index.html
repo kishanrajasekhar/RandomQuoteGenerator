@@ -11,7 +11,8 @@
 	<script>
 		// Random Quote Generator
 		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
-				
+		var twitterAPI = "https://twitter.com/intent/tweet";		
+		
 		$(document).ready(function() {	  
 		  $("#quote_button").click(function() {
 			  $.getJSON(url, function(json){
@@ -52,7 +53,11 @@
 			    </div>
 				<button id="quote_button" class="btn btn-primary"> 
 			        New Quote
-			    </button>
+			    </button>			    
+			    <a class="btn-twitter twitter-share-button"
+				  target="_blank" href="https://twitter.com/intent/tweet">
+				  <img src="New-Twitter-Logo.png" height="35" width="35">
+				</a>
 		    </div>
 	    </div>
     </div>
