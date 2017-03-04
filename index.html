@@ -10,15 +10,32 @@
 <body>
 	<script>
 		// Random Quote Generator
-		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
-		var twitterAPI = "https://twitter.com/intent/tweet?hashtags=quotes";
+		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?"; //base url for the forismastic api
+		var twitterAPI = "https://twitter.com/intent/tweet?hashtags=quotes"; // base url for the twitter api
+		bg_colors = ["#b3d9ff", "#e0b3ff", "#ff9999", "#99ff99", "#ffff66", "#f0c128"]; // different colors to transition through
+		var count = 0 // this count keeps incrementing and is used to index bg_colors
+		
+		/* Turns the background color white (first part of the transition) */
+		var clear_background = function(){
+			$("body").css("background-color", "white");
+			count += 1;
+		}
+		
+		/* Turns the background color to the next color in the list (second part of the transition) */
+		var change_background = function(){
+			$("body").css("background-color", bg_colors[count % bg_colors.length]);
+			count += 1;
+		}
 		
 		$(document).ready(function() {	  
+		  /* You get a new quote whenever the quote button is clicked */
 		  $("#quote_button").click(function() {
 			  $.getJSON(url, function(json){
 			  		// console.log(json);
+					clear_background();
 			  		$("#quote_area").fadeOut(1200, function(){
-			  			var html = "";
+			  			change_background();
+			  			var html = ""; // the html will contain text for the quote and its author
 			  			html += '<div id="quote_area">';
 				  		html += '<h2 id="quote_text">"';
 				  		html += json.quoteText;
@@ -32,7 +49,8 @@
 			  		});			  		
 			  });
 			});	
-		
+			
+			/* The twitter button allows the user to tweet the quote. */
 			$("#twitter_button").click(function(){
 				quote = $("#quote_text").html();
 				author = $("#quote_author").html();
@@ -44,6 +62,9 @@
 	<style>
 		body{
 			margin-top: 5%;
+			-webkit-transition: background-color 1000ms linear;
+			-ms-transition: background-color 1000ms linear;
+			transition: background-color 1000ms linear;
 		}
 		
 		#quote_text{
