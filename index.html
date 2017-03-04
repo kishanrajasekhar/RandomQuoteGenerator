@@ -12,20 +12,24 @@
 		// Random Quote Generator
 		var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
 		var twitterAPI = "https://twitter.com/intent/tweet?hashtags=quotes";
-		var quote_author = "It could be you";	
 		
 		$(document).ready(function() {	  
 		  $("#quote_button").click(function() {
 			  $.getJSON(url, function(json){
-			  		console.log(json);
-			  		var html = "";
-			  		html += '<h2 id="quote_text">"';
-			  		html += json.quoteText;
-			  		html += '"</h2><h4><strong id="quote_author">-';
-			  		html += json.quoteAuthor;
-			  		html += '</strong></h4>';
-			  		$("#quote_API").html(html);
-			  		quote_author = json.quoteAuthor;
+			  		// console.log(json);
+			  		$("#quote_area").fadeOut(1200, function(){
+			  			var html = "";
+			  			html += '<div id="quote_area">';
+				  		html += '<h2 id="quote_text">"';
+				  		html += json.quoteText;
+				  		html += '"</h2><h4><strong id="quote_author">-';
+				  		html += json.quoteAuthor;
+				  		html += '</strong></h4>';
+				  		html += '</div>';
+				  		$("#quote_API").html(html);
+				  		$("#quote_area").hide();
+				  		$("#quote_area").fadeIn(1200);
+			  		});			  		
 			  });
 			});	
 		
@@ -57,8 +61,10 @@
 		<div id="quote_section" class="text-center">
 			<div style="margin-top:5%;margin-bottom:5%">
 				<div id="quote_API">
-			      <h2 id="quote_text">Click the button to get a quote</h2>
-			      <h4 id="quote_author"></h4>
+				  <div id="quote_area">
+				      <h2 id="quote_text">Click the button to get a quote</h2>
+				      <h4 id="quote_author"></h4>
+			      </div>
 			    </div>
 				<button id="quote_button" class="btn btn-primary"> 
 			        New Quote
